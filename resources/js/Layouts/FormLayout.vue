@@ -277,7 +277,7 @@
       <!-- Page Content -->
       <main>
         <div class="flex flex-col justify-center items-center w-full mt-5 mb-5">
-          <div class="w-11/12 sm:w-6/12 md:w-5/12 lg:w-4/12">
+          <div class="w-full sm:w-6/12 md:w-5/12 lg:w-4/12">
             <div class="bg-white overflow-hidden shadow-xl p-5">
               <slot></slot>
             </div>

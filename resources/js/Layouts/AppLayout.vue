@@ -408,8 +408,8 @@
       <!-- Page Content -->
       <main>
         <div class="flex flex-col justify-center items-center w-full mt-5 mb-5">
-          <div class="w-11/12">
-            <div class="bg-white overflow-hidden shadow-xl p-5">
+          <div class="w-full">
+            <div class="bg-white overflow-hidden shadow-xl py-5 px-2">
               <slot></slot>
             </div>
           </div>

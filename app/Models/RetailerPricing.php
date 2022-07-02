@@ -10,7 +10,7 @@ class RetailerPricing extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'retailers_pricings';
+    protected $table = 'retailer_pricings';
 
     protected $fillable = [
         'retailer_id',
@@ -41,4 +41,11 @@ class RetailerPricing extends Model
     {
         return $query->where('retailer_index', 'like', '%' . $retailer_index . '%')->where('retailer_id', $retailer_id);
     }
+    public function getProductAttribute()
+    {
+        if (!$this->relationLoaded('product')) $this->load('product');
+
+        return $this->getRelation('product') ?: $this->defaultBasket();
+    }
+
 }

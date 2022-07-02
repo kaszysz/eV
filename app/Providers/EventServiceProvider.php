@@ -7,6 +7,7 @@ use App\Models\City;
 use App\Models\Component;
 use App\Models\Producer;
 use App\Models\Product;
+use App\Models\ReportMerch;
 use App\Models\Retailer;
 use App\Models\RetailerPricing;
 use App\Models\Shop;
@@ -16,6 +17,7 @@ use App\Observers\CityObserver;
 use App\Observers\ComponentObserver;
 use App\Observers\ProducerObserver;
 use App\Observers\ProductObserver;
+use App\Observers\ReportMerchObserver;
 use App\Observers\RetailerObserver;
 use App\Observers\RetailerPricingObserver;
 use App\Observers\ShopObserver;
@@ -52,6 +54,7 @@ class EventServiceProvider extends ServiceProvider
         Product::class => [ProductObserver::class],
         Producer::class => [ProducerObserver::class],
         RetailerPricing::class => [RetailerPricingObserver::class],
+        ReportMerch::class => [ReportMerchObserver::class]
     ];
 
     /**

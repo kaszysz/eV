@@ -2,7 +2,7 @@
   <div class="overflow-hidden">
     <div>
       <div class="bg-black py-2 px-4 text-white uppercase">
-        <span class="ml-2">Wybrany sklep</span
+        <span class="ml-2">Shop Info</span
         ><span class="float-right" v-if="moreShopInformations">
             <font-awesome-icon
             @click="showMoreShopInformations"

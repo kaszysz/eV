@@ -8,8 +8,11 @@
         v-model="retailerIndex"
         class="block w-full"
         ref="input"
-        @focus="displayList"
-        @blur="hideList"
+        @focus="
+          isFocused = true;
+          isDropdown = true;
+        "
+        @blur="isFocused = false"
       />
       <div class="absolute top-0 right-0">
         <font-awesome-icon
@@ -17,7 +20,7 @@
           class="cursor-pointer text-gray-500 -translate-x-4 translate-y-1/2"
           icon="chevron-down"
           size="sm"
-          @click="displayList"
+          @click="isDropdown = true"
         />
         <font-awesome-icon
           v-else
@@ -30,7 +33,7 @@
           "
           icon="chevron-down"
           size="sm"
-          @click="hideList"
+          @click="isDropdown = false"
         />
       </div>
     </div>
@@ -66,16 +69,18 @@ const props = defineProps({
 
 const emits = defineEmits(["selectedItem"]);
 
-const selectedItem = ref(null);
+// Select Item
 
-async function getItemResetRetailerIndex(item) {
-  await selectItem(item)
-  resetRetailerIndex()
-  console.log("zaznaczone")
-}
+const selectedItem = ref(null);
 async function selectItem(item) {
   selectedItem.value = item;
 }
+watch(selectedItem, () => {
+  emits("selectedItem", selectedItem.value);
+});
+
+// Reset Index and Indexes Array
+
 function resetRetailerIndex() {
   retailerIndex.value = "";
 }
@@ -83,9 +88,13 @@ function resetRetailerIndexes() {
   retailerIndexes.value = [];
 }
 
-watch(selectedItem, () => {
-  emits("selectedItem", selectedItem.value);
-});
+// Select Item and Reset all Variables
+
+async function getItemResetRetailerIndex(item) {
+  await selectItem(item);
+  resetRetailerIndex();
+  resetRetailerIndexes();
+}
 
 function alertFindError() {
   swal({
@@ -94,6 +103,8 @@ function alertFindError() {
     icon: "error",
   });
 }
+
+// Retailer Indexes - Array
 
 const retailerIndexes = ref([]);
 async function getRetailerIndexes() {
@@ -113,23 +124,12 @@ async function getRetailerIndexes() {
       }
       if (res.data) {
         retailerIndexes.value = res.data;
-        showList.value = true;
       }
     })
     .catch((err) => {
       alertFindError();
     });
 }
-
-const retailerIndex = ref("");
-watch(retailerIndex, () => {
-  if (retailerIndex.value.length < 4 && retailerIndexes.value.length >= 1) {
-    resetRetailerIndexes();
-    return null;
-  } else {
-    getRetailerIndexes();
-  }
-});
 
 const retailerIndexesFiltered = computed(() => {
   if (retailerIndexes.value.length == 0) {
@@ -147,14 +147,29 @@ const retailerIndexesFiltered = computed(() => {
   return filteredArray.slice(0, 5);
 });
 
-const showList = ref(false);
-const displayList = _.debounce(() => {
-  if (retailerIndexesFiltered.value.length > 0) {
-    showList.value = true;
-  }
-}, 100);
+// Retailer Index
 
-const hideList = _.debounce(() => {
-  showList.value = false;
-}, 300);
+const retailerIndex = ref("");
+watch(
+  retailerIndex,
+  _.debounce(() => {
+    if (retailerIndex.value.length < 4 && retailerIndexes.value.length >= 1) {
+      resetRetailerIndexes();
+      return null;
+    } else {
+      getRetailerIndexes();
+    }
+  }, 300)
+);
+
+// Show Dropdown List
+const isFocused = ref(false);
+const isDropdown = ref(false);
+const showList = computed(() => {
+  return (
+    isFocused.value ||
+    isDropdown.value ||
+    retailerIndexesFiltered.value.length > 0
+  );
+});
 </script>

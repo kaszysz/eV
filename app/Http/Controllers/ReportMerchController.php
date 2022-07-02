@@ -14,7 +14,7 @@ class ReportMerchController extends Controller
     public function index()
     {
         return Inertia::render('Reports/Merch/Index', [
-            'report_merches' => ReportMerch::all()
+            'reportMerches' => ReportMerch::all()
         ]);
     }
 

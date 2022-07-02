@@ -9,6 +9,7 @@
       class="mt-2"
       v-model="form.shop_id"
       @retailerId="getRetailerId"
+      @geolocation="getGeolocation"
     />
     <div v-if="form.shop_id">
       <index-searcher @selectedItem="getProduct" :retailerId="retailerId" />
@@ -19,11 +20,16 @@
       />
       <div class="flex items-center justify-end mt-4">
         <jet-button
+          v-if="!isDone"
           class="ml-4"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
+          key="createBtn"
         >
           Create
+        </jet-button>
+        <jet-button v-else class="ml-4" type="button" @click="startNewReport" key="snrBtn">
+          Start New Report
         </jet-button>
       </div>
     </div>
@@ -78,6 +84,7 @@ function submit() {
   }).then((result) => {
     if (result) {
       prepareRetailerPricings();
+      isDone.value = true;
       form.post(route("report-merches.store"));
     } else {
       swal({
@@ -105,9 +112,20 @@ function getRetailerId(id) {
   retailerId.value = id;
 }
 
+function getGeolocation(geolocation) {
+  form.geo_latitude = geolocation.value.latitude;
+  form.geo_longitude = geolocation.value.longitude;
+}
+
 const prepareRetailerPricings = () => {
   form.retailer_pricings = products.value.map((x) => {
     return x.id;
   });
 };
+
+const isDone = ref(false);
+
+function startNewReport() {
+  window.location.reload();
+}
 </script>

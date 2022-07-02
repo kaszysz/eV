@@ -24,10 +24,10 @@ import ClosestShopList from "./ClosestShopsList.vue";
 import ShopInformations from "./ShopInformations.vue";
 import { ref } from "vue";
 
-const emits = defineEmits(['update:modelValue', 'retailerId', 'geolocation']);
+const emits = defineEmits(["update:modelValue", "retailerId", "geolocation"]);
 
-const showFindButton = ref(true)
-const showShopsList = ref(false)
+const showFindButton = ref(true);
+const showShopsList = ref(false);
 
 const shops = ref([]);
 const getShopsList = async (latitude, longitude) => {
@@ -43,25 +43,31 @@ const getShopsList = async (latitude, longitude) => {
       swal({
         title: "Location Error",
         text: "We coudln't get your geolocation, please try again",
-        icon: "error"
+        icon: "error",
       });
     });
 };
 
+const geolocation = ref({
+  latitude: null,
+  longitude: null,
+});
+
 const displayClosestShopsList = async () => {
   const { latitude, longitude } = await Location.getCoords();
+  geolocation.value.latitude = latitude;
+  geolocation.value.longitude = longitude;
   getShopsList(latitude, longitude);
-  showFindButton.value = false
-  showShopsList.value = true
+  showFindButton.value = false;
+  showShopsList.value = true;
 };
 
 const shopInfo = ref(null);
-function getShop(shop){
-    shopInfo.value = shop
-    emits('update:modelValue', shop.id)
-    emits('retailerId', shop.retailer_id)
-    showShopsList.value = false
+function getShop(shop) {
+  shopInfo.value = shop;
+  emits("update:modelValue", shop.id);
+  emits("retailerId", shop.retailer_id);
+  emits("geolocation", geolocation);
+  showShopsList.value = false;
 }
-
-
 </script>
