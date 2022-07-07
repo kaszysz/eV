@@ -1,15 +1,9 @@
 <template>
   <Head title="Categories Index" />
-  <div class="flex items-center m-5">
-    <label class="mx-5" for="dateStart">From</label>
-    <input v-model="dates.dateStart" id="dateStart" type="date" />
-    <label class="mx-5" for="dateEnd">To</label>
-    <input v-model="dates.dateEnd" id="dateEnd" type="date" />
-    <jet-button class="ml-5 h-max" type="button" @click="exportReport"
-      >export</jet-button
-    >
-  </div>
-
+  <date-picker-bar v-model="dates" />
+  <jet-button class="ml-1" type="button" @click="exportReport"
+    >export</jet-button
+  >
   <div class="flex w-full text-xs mb-2 font-bold">
     <div class="flex justify-center w-3/12">Date</div>
     <div class="flex justify-center w-2/12">Retailer</div>
@@ -18,11 +12,13 @@
     <div class="flex justify-center w-2/12">Actions</div>
   </div>
   <report-merch-details
-    class="flex w-full pt-2 pb-2 focus:bg-gray-100 cursor-pointer"
-    v-for="reportMerch in reportMerches"
-    :key="reportMerch.id"
+    v-for="(reportMerch, index) in reportMerches.data"
+    :key="index"
     :reportMerch="reportMerch"
   />
+  <div class="flex justify-center mt-5">
+    <pagination :links="reportMerches.links" />
+  </div>
 </template>
 
 <script>
@@ -35,10 +31,11 @@ export default {
 <script setup>
 import { Head } from "@inertiajs/inertia-vue3";
 import JetButton from "@/Jetstream/Button.vue";
-import Actions from "@/Components/Actions.vue";
 import { useAlert } from "@/Helpers/Alerts.js";
 import ReportMerchDetails from "@/Components/ReportMerchDetails.vue";
-import { reactive } from "@vue/reactivity";
+import { reactive, ref } from "@vue/reactivity";
+import Pagination from "@/Jetstream/Pagination.vue";
+import DatePickerBar from "@/Components/DatePicker/DatePickerBar.vue";
 
 useAlert();
 
@@ -46,9 +43,9 @@ const props = defineProps({
   reportMerches: Object,
 });
 
-const dates = reactive({
-  dateStart: null,
-  dateEnd: null,
+const dates = ref({
+  dateStart: "2022-06-19",
+  dateEnd: "2022-06-19",
 });
 
 const exportReport = () => {

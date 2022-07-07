@@ -14,7 +14,7 @@ class ReportMerchController extends Controller
     public function index()
     {
         return Inertia::render('Reports/Merch/Index', [
-            'reportMerches' => ReportMerch::all()
+            'reportMerches' => ReportMerch::paginate(5)
         ]);
     }
 
@@ -32,7 +32,7 @@ class ReportMerchController extends Controller
         return redirect()->back();
     }
 
-    public function show(ReportMerch $ReportMerch)
+    public function show(ReportMerch $reportMerch)
     {
         return Inertia::render('Reports/Merch/Show');
     }
@@ -42,15 +42,15 @@ class ReportMerchController extends Controller
         return Redirect::route('reports.merch.show', $id);
     }
 
-    public function update(ReportMerchRequest $request, ReportMerch $ReportMerch)
+    public function update(ReportMerchRequest $request, ReportMerch $reportMerch)
     {
-        $ReportMerch->update($request->validated());
-        return redirect::route('Reports/Merch.show', $ReportMerch->id);
+        $reportMerch->update($request->validated());
+        return redirect::route('Reports/Merch.show', $reportMerch->id);
     }
 
-    public function destroy(ReportMerch $ReportMerch, DestroyService $destroy)
+    public function destroy(ReportMerch $reportMerch, DestroyService $destroy)
     {
-        $destroy->DestroyOrRestore($ReportMerch);
+        $destroy->DestroyOrRestore($reportMerch);
         return redirect()->back();
     }
 }

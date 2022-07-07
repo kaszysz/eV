@@ -53,30 +53,37 @@ class Product extends Model
     {
         return $this->belongsTo(Component::class);
     }
+
     public function matrix()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function refresh_rate()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function processor()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function ram()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function disc()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function graphic_card()
     {
         return $this->belongsTo(Component::class);
     }
+
     public function os()
     {
         return $this->belongsTo(Component::class);

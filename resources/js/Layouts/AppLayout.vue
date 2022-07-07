@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font-roboto">
     <Head :title="title" />
 
     <jet-banner />
