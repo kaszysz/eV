@@ -57,6 +57,7 @@
       <Actions :page="'products'" :id="product.id" :deleted_at="product.deleted_at" />
     </div>
   </div>
+  <paginator :links="props.products.links" />
 </template>
 
 <script>
@@ -67,6 +68,7 @@ export default {
 </script>
 
 <script setup>
+import Paginator from "@/Components/Paginator.vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import Actions from "@/Components/Actions.vue";
 import { useAlert } from "@/Helpers/Alerts.js";

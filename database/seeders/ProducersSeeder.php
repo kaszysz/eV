@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Producer;
 use Illuminate\Database\Seeder;
 
-class CategoriesSeeder extends Seeder
+class ProducersSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,101 +15,30 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        $categories = [
+        $producers =
             [
-                'parent_id' => null,
-                'name' => 'Notebooks'
-            ],
-            [
-                'parent_id' => null,
-                'name' => 'Tablets'
-            ],
-            [
-                'parent_id' => null,
-                'name' => 'Visuals'
-            ],
-            [
-                'parent_id' => null,
-                'name' => 'AIO'
-            ],
-            [
-                'parent_id' => null,
-                'name' => 'Desktops'
-            ],
-            [
-                'parent_id' => null,
-                'name' => 'Components'
-            ],
-        ];
+                ['name' => 'Apple'],
+                ['name' => 'Acer'],
+                ['name' => 'Asus'],
+                ['name' => 'Dell'],
+                ['name' => 'HP'],
+                ['name' => 'Lenovo'],
+                ['name' => 'MSI'],
+                ['name' => 'Huawei'],
+                ['name' => 'Gigabyte'],
+                ['name' => 'Samsung'],
+                ['name' => 'TLC'],
+                ['name' => 'Nokia'],
+                ['name' => 'LG'],
+                ['name' => 'Benq'],
+                ['name' => 'IIyama'],
+                ['name' => 'Philips'],
+                ['name' => 'AOC'],
+                ['name' => 'Xiaomi'],
+                ['name' => 'Razer'],
+                ['name' => 'Logitech']
+            ];
 
-        $notebooks = [
-            [
-                'parent_id' => 1,
-                'name' => 'Non-Gaming'
-            ],
-            [
-                'parent_id' => 1,
-                'name' => 'Gaming'
-            ],
-        ];
-
-        $visuals = [
-            [
-                'parent_id' => 3,
-                'name' => 'Non-Gaming'
-            ],
-            [
-                'parent_id' => 3,
-                'name' => 'Gaming'
-            ],
-        ];
-
-        $desktops = [
-            [
-                'parent_id' => 5,
-                'name' => 'Non-Gaming'
-            ],
-            [
-                'parent_id' => 5,
-                'name' => 'Gaming'
-            ],
-        ];
-
-        $components = [
-            [
-                'parent_id' => 6,
-                'name' => 'Processors'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'Graphic Cards'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'Discs'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'Resolutions'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'Refresh Rates'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'Sizes'
-            ],
-            [
-                'parent_id' => 6,
-                'name' => 'OS'
-            ]
-        ];
-
-        Category::insert($categories);
-        Category::insert($notebooks);
-        Category::insert($visuals);
-        Category::insert($desktops);
-        Category::insert($components);
+        Producer::insert($producers);
     }
 }
