@@ -15,6 +15,6 @@ class RetailerPricingsSeeder extends Seeder
      */
     public function run()
     {
-        RetailerPricing::factory(1000)->create();
+        RetailerPricing::factory(10000)->create();
     }
 }

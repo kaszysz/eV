@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
 
 /*
 ! tailwindcss v3.0.23 | MIT License | https://tailwindcss.com
@@ -1173,7 +1173,7 @@ Ensure the default browser behavior of the `hidden` attribute.
 }.font-mono{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }.font-roboto{
-  font-family: Roboto;
+  font-family: Roboto, 300;
 }.text-sm{
   font-size: 0.875rem;
   line-height: 1.25rem;

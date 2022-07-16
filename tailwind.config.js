@@ -12,7 +12,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                roboto: ['Roboto']
+                roboto: ['Roboto', '300']
             },
         },
     },

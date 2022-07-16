@@ -18,7 +18,7 @@
         <div class="bg-gray-100 px-4 py-2">
           <font-awesome-icon icon="store" /><span class="ml-2">{{
             shopInfo.retailer.name
-          }}</span>
+          }} ({{ shopInfo.retailer.id }})</span>
         </div>
         <div class="bg-white px-4 py-2">
           <font-awesome-icon icon="city" /><span class="ml-2">{{
