@@ -4,15 +4,17 @@
 
   <jet-validation-errors class="mb-4" />
 
+  <div>
+  <div>Select task's category</div>
+    <div class="w-full bg-black text-white text-center font-bold p-2 mt-2 cursor-pointer">Retailer</div>
+    <div class="w-full bg-black text-white text-center font-bold p-2 mt-2 cursor-pointer">Shops</div>
+    <div class="w-full bg-black text-white text-center font-bold p-2 mt-2 cursor-pointer">Users</div>
+  </div>
+
   <form @submit.prevent="submit">
     <div>
       <jet-label for="categoryId" value="Category" />
-      <select-list
-        id="categoryId"
-        :list="categories"
-        :empty="false"
-        v-model="form.category_id"
-      />
+      <jet-input v-model=/>
     </div>
     <select-search-box v-model="form.producer_id" :label="'Producer'" :list="props.producers" mode="id" />
     <select-search-box v-model="form.name" :label="'Name'" :list="props.components" mode="name" />
@@ -54,16 +56,9 @@ import _ from "lodash";
 
 useAlert();
 
-const props = defineProps({
-  categories: null,
-  components: null,
-  producers: null
-});
-
-
 const form = Inertia.form({
-  category_id: null,
-  producer_id: null,
+  title: null,
+  description: null,
   name: null
 });
 
