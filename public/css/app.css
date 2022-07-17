@@ -768,14 +768,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: 1rem;
 }.-mt-px{
   margin-top: -1px;
+}.mb-2{
+  margin-bottom: 0.5rem;
 }.-mb-1{
   margin-bottom: -0.25rem;
 }.mr-1{
   margin-right: 0.25rem;
-}.mb-1{
-  margin-bottom: 0.25rem;
-}.mb-2{
-  margin-bottom: 0.5rem;
 }.mb-5{
   margin-bottom: 1.25rem;
 }.block{
@@ -860,6 +858,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 91.666667%;
 }.w-9\/12{
   width: 75%;
+}.w-8\/12{
+  width: 66.666667%;
 }.min-w-0{
   min-width: 0px;
 }.max-w-screen-xl{

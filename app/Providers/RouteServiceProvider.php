@@ -9,6 +9,7 @@ use App\Models\Producer;
 use App\Models\Product;
 use App\Models\Retailer;
 use App\Models\RetailerPricing;
+use App\Models\Task;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -70,6 +71,10 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('retailer-pricing', function ($value){
             return RetailerPricing::withTrashed()->where('id', $value)->firstOrFail();
+        });
+
+        Route::bind('tasks', function ($value){
+            return Task::withTrashed()->where('id', $value)->firstOrFail();
         });
     }
 

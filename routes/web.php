@@ -10,6 +10,8 @@ use App\Http\Controllers\ReportMerchExportController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RetailerPricingController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\VoivodeshipController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -49,6 +51,7 @@ Route::resource('products', ProductController::class);
 Route::resource('producers', ProducerController::class);
 Route::resource('retailer-pricings', RetailerPricingController::class);
 Route::resource('report-merches', ReportMerchController::class);
+Route::resource('tasks', TaskController::class);
 
 Route::post('/cities/get/cities/voivodeship/{id}', [CityController::class, 'getCitiesVoivodeship'])->name('cities.voivodeship');
 Route::post('/products/get/products/category/{id}', [ProductController::class, 'getProductsCategory'])->name('products.category');
@@ -57,3 +60,5 @@ Route::post('/shops/get/closest', [ShopController::class, 'getClosestShops'])->n
 Route::post('/retailer-pricings/get/indexes/retailer', [RetailerPricingController::class, 'getRetailerPricingsByIndexAndRetailerId'])->name('retailer-pricings.get.indexes.retailer');
 Route::put('/retailer-pricings/update/wr/{retailerPricing}', [RetailerPricingController::class, 'updateWithoutRedirect'])->name('retailer-pricings.update.without.redirect');
 Route::post('/report-merches/export/all', [ReportMerchExportController::class, 'export'])->name('report-merches.export');
+
+Route::get('/test', [TestController::class, 'test'])->name('test');
