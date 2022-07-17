@@ -4,15 +4,13 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Producer;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ProducersSeeder extends Seeder
+class ProducerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
         $producers =

@@ -2,19 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\Shop;
+use App\Models\City;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ShopsSeeder extends Seeder
+class CitySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
-        Shop::factory(100)->create();
+        City::factory(100)->create();
     }
 }

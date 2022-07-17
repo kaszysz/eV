@@ -18,7 +18,7 @@ class ShopFactory extends Factory
     {
         return [
             'city_id' => $this->faker->numberBetween(1,20),
-            'retailer_id' => $this->faker->numberBetween(1,10),
+            'retailer_id' => $this->faker->numberBetween(1,7),
             'street' => $this->faker->streetAddress(),
             'fsr_id' => $this->faker->numberBetween(1,5),
             'promoter_id' => $this->faker->numberBetween(6,20),

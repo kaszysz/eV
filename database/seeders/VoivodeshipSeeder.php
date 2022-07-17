@@ -8,13 +8,32 @@ use Illuminate\Database\Seeder;
 
 class VoivodeshipSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
-        Voivodeship::factory(15)->create();
+
+        $voivodeships = [
+            'dolnośląskie',
+            'kujawsko-pomorskie',
+            'lubelskie',
+            'lubuskie',
+            'łódzkie',
+            'małopolskie',
+            'mazowieckie',
+            'opolskie',
+            'podkarpackie',
+            'podlaskie',
+            'pomorskie',
+            'śląskie',
+            'świętokrzyskie',
+            'warmińsko-mazurskie',
+            'wielkopolskie',
+            'zachodniopomorskie'
+        ];
+
+        foreach ($voivodeships as $voivodeship){
+            Voivodeship::create(['name' => ucfirst($voivodeship)]);
+        }
     }
 }

@@ -22,7 +22,7 @@ class RetailerPricingFactory extends Factory
 
         return [
             'retailer_id' => $this->faker->numberBetween(1,10),
-            'retailer_index' => $this->faker->numerify('########') ,
+            'retailer_index' => $this->faker->numberBetween(100000,200000) ,
             'product_id' => $this->faker->numberBetween(1,10),
             'price' => $price,
             'sale' => $this->isValue($isBonus, $sale),

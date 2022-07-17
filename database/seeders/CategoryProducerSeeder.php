@@ -6,13 +6,10 @@ use App\Models\CategoryProducer;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CategoriesProducersSeeder extends Seeder
+class CategoryProducerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
         CategoryProducer::factory(50)->create();

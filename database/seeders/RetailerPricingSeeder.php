@@ -6,13 +6,10 @@ use App\Models\RetailerPricing;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RetailerPricingsSeeder extends Seeder
+class RetailerPricingSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
         RetailerPricing::factory(10000)->create();

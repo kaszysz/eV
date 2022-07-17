@@ -3,15 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Component;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class ComponentsSeeder extends Seeder
+class ComponentSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+    use WithoutModelEvents;
+
     public function run()
     {
         $parent_id = 13;
