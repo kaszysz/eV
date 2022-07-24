@@ -812,6 +812,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100vh;
 }.h-full{
   height: 100%;
+}.h-52{
+  height: 13rem;
+}.h-24{
+  height: 6rem;
 }.min-h-screen{
   min-height: 100vh;
 }.w-5{
@@ -909,6 +913,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   cursor: default;
 }.cursor-pointer{
   cursor: pointer;
+}.resize-none{
+  resize: none;
 }.list-inside{
   list-style-position: inside;
 }.list-disc{

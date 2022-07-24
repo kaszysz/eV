@@ -20,7 +20,6 @@ class Shop extends Model
         'priority',
         'geo_latitude',
         'geo_longitude'
-
     ];
 
     protected $with = [

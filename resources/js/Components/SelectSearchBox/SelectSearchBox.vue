@@ -21,7 +21,13 @@
         />
         <font-awesome-icon
           v-else
-          class="cursor-pointer text-gray-500 -translate-x-4 translate-y-1/2 rotate-180"
+          class="
+            cursor-pointer
+            text-gray-500
+            -translate-x-4
+            translate-y-1/2
+            rotate-180
+          "
           icon="chevron-down"
           size="sm"
           @click="hideList"
@@ -31,7 +37,7 @@
 
     <div v-if="itemsArray.length > 0" id="selected" class="py-2">
       <div
-        class="inline-block mt-1 mx-1 p-1 text-sm bg-gray-200"
+        class="inline-block mt-1 mx-1 px-2 py-1 text-sm bg-gray-200"
         v-for="item in itemsArray"
         :key="item.id"
       >
@@ -67,21 +73,19 @@
 import JetInput from "@/Jetstream/Input.vue";
 import JetLabel from "@/Jetstream/Label.vue";
 import FontAwesomeIcon from "@/Helpers/FontAwsome.js";
-import { ref, watch, reactive, computed, toRef } from "vue";
+import { ref, watch, reactive, computed } from "vue";
 import { DropdownList } from ".//Scripts/DropdownList.js";
 
 const props = defineProps({
   modelValue: null,
-  mode: null,
+  returnMode: null,
   label: "",
   list: null,
 });
 
 const emits = defineEmits(["update:modelValue"]);
 
-const returnMode = props.mode;
-
-const operations = ref(0);
+const returnMode = props.returnMode;
 
 const mainItem = reactive({
   id: null,
@@ -102,23 +106,23 @@ watch(mainItem, () => {
 });
 
 watch(itemsArray, () => {
-  const itemsIdArray = itemsArray.map((item) => item.id);
-  emits("update:modelValue", itemsIdArray);
+  const itemsIdsArray = itemsArray.map((item) => item.id);
+  emits("update:modelValue", itemsIdsArray);
 });
 
 const showList = ref(false);
 
-const displayList = _.debounce(() => {
+const displayList = () => {
   if (dropdownList.value.length > 0) {
     showList.value = true;
   }
-}, 100);
+};
 
 const hideList = _.debounce(() => {
   if (dropdownList.value.length > 0) {
     showList.value = false;
   }
-}, 100);
+}, 200);
 
 const input = ref(null);
 function FocusInput() {
@@ -133,12 +137,18 @@ const getItem = _.debounce((item) => {
   if (returnMode == "multiselect") {
     addItem(item);
   } else {
-    item = item;
+    mainItem.id = item.id;
+    mainItem.name = item.name;
   }
-}, 100);
+}, 200);
 
 const addItem = (item) => {
   if (itemsArray.includes(item)) {
+    swal({
+      icon: "error",
+      title: "Error",
+      text: item.name + " is already in list"
+    });
     return null;
   }
   itemsArray.push(item);

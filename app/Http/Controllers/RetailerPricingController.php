@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RetailerPricingRequest;
+use App\Http\Requests\RetailerPricingStoreRequest;
 use App\Http\Requests\RetailerPricingUpdateRequest;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,7 +12,6 @@ use App\Services\DestroyService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 
 class RetailerPricingController extends Controller
@@ -32,7 +31,7 @@ class RetailerPricingController extends Controller
         ]);
     }
 
-    public function store(RetailerPricingRequest $request)
+    public function store(RetailerPricingStoreRequest $request)
     {
         RetailerPricing::create($request->validated());
         return redirect()->back();
@@ -53,7 +52,7 @@ class RetailerPricingController extends Controller
         return Redirect::route('retailer-pricings.show', $id);
     }
 
-    public function update(RetailerPricingRequest $request, RetailerPricing $retailerPricing)
+    public function update(RetailerPricingUpdateRequest $request, RetailerPricing $retailerPricing)
     {
         $retailerPricing->update($request->validated());
         return redirect()->back()->with('retailerPricing', $retailerPricing);

@@ -13,13 +13,13 @@ class RetailerSeeder extends Seeder
     public function run()
     {
         $retailers = [
-            'name' => 'Euro Rtv Agd',
-            'name' => 'Media Expert',
-            'name' => 'Media Markt',
-            'name' => 'X-Kom',
-            'name' => 'Komputronik',
-            'name' => 'Neonet',
-            'name' => 'Sferis'
+            ['name' => 'Euro Rtv Agd'],
+            ['name' => 'Media Expert'],
+            ['name' => 'Media Markt'],
+            ['name' => 'X-Kom'],
+            ['name' => 'Komputronik'],
+            ['name' => 'Neonet'],
+            ['name' => 'Sferis']
         ];
 
         Retailer::insert($retailers);

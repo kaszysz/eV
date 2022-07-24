@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CityRequest;
+use App\Http\Requests\CityStoreRequest;
+use App\Http\Requests\CityUpdateRequest;
 use App\Models\City;
-use App\Models\Voivodeship;
 use App\Services\DestroyService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +26,7 @@ class CityController extends Controller
         ]);
     }
 
-    public function store(CityRequest $request)
+    public function store(CityStoreRequest $request)
     {
         $city = City::create($request->validated());
         return redirect()->back();
@@ -45,7 +45,7 @@ class CityController extends Controller
         return Redirect::route('cities.show', $id);
     }
 
-    public function update(CityRequest $request, City $city)
+    public function update(CityUpdateRequest $request, City $city)
     {
         $city->update($request->validated());
         return redirect::route('cities.show', $city->id);

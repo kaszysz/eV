@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\TaskStoreRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Retailer;
 use App\Models\Shop;
@@ -25,12 +26,26 @@ class TaskController extends Controller
 
     public function create()
     {
-        return Inertia::render('Tasks/Create');
+        return Inertia::render('Tasks/Create', [
+            'voivodeships' => Voivodeship::all(),
+            'retailers' => Retailer::all(),
+            'users' => User::all(),
+            'shops' => Shop::all()
+        ]);
     }
 
-    public function store(StoreTaskRequest $request)
+    public function store(TaskStoreRequest $request)
     {
         $task = Task::create($request->validated());
+        if ($request->get('recivers') == 'retailers') {
+            $task->retailers()->sync($request->reciversArray);
+        }
+        if ($request->get('recivers') == 'shops') {
+            $task->shops()->sync($request->reciversArray);
+        }
+        if ($request->get('recivers') == 'users') {
+            $task->users()->sync($request->reciversArray);
+        }
         return redirect()->back();
     }
 
